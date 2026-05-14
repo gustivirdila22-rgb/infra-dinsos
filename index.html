@@ -10,75 +10,124 @@
   padding: 0;
   box-sizing: border-box;
   font-family: Arial;
+  transition: 0.3s;
 }
 
 body {
   background: #f4f6f8;
-  color: #333;
+  color: #1f2937;
 }
 
+/* HEADER */
 header {
-  background: #1f2a40;
+  background: linear-gradient(135deg, #1f2a40, #111827);
   color: white;
-  padding: 20px;
+  padding: 25px;
   text-align: center;
 }
 
+/* CONTAINER */
 .container {
-  padding: 30px;
   max-width: 1000px;
   margin: auto;
+  padding: 30px;
 }
 
+/* TOPBAR */
 .topbar {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  margin-top: 20px;
+  margin-bottom: 20px;
+  font-size: 14px;
 }
 
+/* BUTTON */
 button {
   padding: 8px 12px;
   border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  background: #007bff;
+  border-radius: 8px;
+  background: #2563eb;
   color: white;
+  cursor: pointer;
 }
 
+/* GRID */
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 20px;
-  margin-top: 20px;
 }
 
+/* CARD */
 .card {
   background: white;
-  padding: 20px;
-  border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  padding: 18px;
+  border-radius: 14px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
 }
 
+/* BIG NUMBER */
+.big {
+  font-size: 26px;
+  font-weight: bold;
+  margin-top: 8px;
+}
+
+/* BADGE */
 .badge {
   display: inline-block;
   margin-top: 10px;
   padding: 5px 10px;
-  border-radius: 20px;
-  background: #28a745;
+  border-radius: 999px;
+  background: #22c55e;
   color: white;
   font-size: 12px;
 }
 
-/* DARK MODE */
+/* ACTIVITY */
+.activity {
+  margin-top: 10px;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* PROGRESS */
+.progress {
+  width: 100%;
+  height: 10px;
+  background: #e5e7eb;
+  border-radius: 20px;
+  margin-top: 10px;
+  overflow: hidden;
+}
+
+.progress-bar {
+  width: 68%;
+  height: 100%;
+  background: linear-gradient(90deg, #3b82f6, #60a5fa);
+}
+
+/* DARK MODE FIX */
 .dark {
-  background: #121826;
-  color: white;
+  background: #0f172a;
+  color: #e5e7eb;
+}
+
+.dark header {
+  background: #0b1220;
 }
 
 .dark .card {
-  background: #1f2a40;
+  background: #1e293b;
   color: white;
+}
+
+.dark .activity {
+  color: #cbd5e1;
+}
+
+.dark .progress {
+  background: #334155;
 }
 </style>
 </head>
@@ -87,40 +136,48 @@ button {
 
 <header>
   <h1>Smart System Dashboard</h1>
-  <p>Monitoring & Information Panel</p>
+  <p>System Monitoring & Analytics Overview</p>
 </header>
 
 <div class="container">
 
   <div class="topbar">
-    <p id="time">Loading...</p>
+    <div id="time">Loading time...</div>
     <button onclick="toggleDark()">Toggle Mode</button>
   </div>
 
   <div class="grid">
 
     <div class="card">
-      <h3>System Status</h3>
-      <p>Current system health monitoring</p>
-      <div class="badge">ACTIVE</div>
+      <h3>Total Pengguna Aktif</h3>
+      <div class="big">1.284</div>
+      <p>Pengguna aktif hari ini</p>
+      <span class="badge">LIVE</span>
     </div>
 
     <div class="card">
-      <h3>User Activity</h3>
-      <p>Tracking user interactions</p>
-      <div class="badge">STABLE</div>
+      <h3>Load Server</h3>
+      <div class="big">68%</div>
+      <p>Kapasitas penggunaan sistem</p>
+      <div class="progress">
+        <div class="progress-bar"></div>
+      </div>
     </div>
 
     <div class="card">
-      <h3>Server Info</h3>
-      <p>Deployment environment status</p>
-      <div class="badge">ONLINE</div>
+      <h3>Aktivitas Sistem</h3>
+      <div class="activity">
+        ✔ Login user baru (2 menit lalu)<br>
+        ✔ Update data berhasil (10 menit lalu)<br>
+        ✔ Backup otomatis selesai<br>
+        ✔ Sistem berjalan normal
+      </div>
     </div>
 
     <div class="card">
-      <h3>Notifications</h3>
-      <p>System alerts and updates</p>
-      <div class="badge">UPDATED</div>
+      <h3>Status Sistem</h3>
+      <p>Semua layanan berjalan stabil tanpa gangguan</p>
+      <span class="badge">STABLE</span>
     </div>
 
   </div>
@@ -131,7 +188,7 @@ button {
 function updateTime(){
   const now = new Date();
   document.getElementById("time").innerText =
-    "Current Time: " + now.toLocaleTimeString();
+    "Waktu: " + now.toLocaleTimeString();
 }
 setInterval(updateTime, 1000);
 updateTime();
